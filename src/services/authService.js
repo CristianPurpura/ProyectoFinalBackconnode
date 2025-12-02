@@ -6,7 +6,6 @@ dotenv.config();
 class AuthService {
   constructor() {
     this.jwtSecret = process.env.JWT_SECRET;
-    // En una aplicación real, esto estaría en una base de datos
     this.users = [
       {
         id: 1,
@@ -17,7 +16,6 @@ class AuthService {
     ];
   }
 
-  // Autenticar usuario
   async authenticateUser(username, password) {
     try {
       if (!username || !password) {
@@ -28,7 +26,6 @@ class AuthService {
         };
       }
 
-      // Buscar usuario
       const user = this.users.find(u => u.username === username && u.password === password);
       
       if (!user) {
@@ -39,7 +36,6 @@ class AuthService {
         };
       }
 
-      // Generar token JWT
       const token = this.generateToken(user);
       
       return {
@@ -63,7 +59,6 @@ class AuthService {
     }
   }
 
-  // Generar token JWT
   generateToken(user) {
     const payload = {
       id: user.id,
@@ -77,7 +72,6 @@ class AuthService {
     });
   }
 
-  // Verificar token JWT
   verifyToken(token) {
     try {
       if (!token) {
@@ -88,7 +82,6 @@ class AuthService {
         };
       }
 
-      // Remover "Bearer " si está presente
       const cleanToken = token.startsWith('Bearer ') ? token.slice(7) : token;
 
       const decoded = jwt.verify(cleanToken, this.jwtSecret);
@@ -121,7 +114,6 @@ class AuthService {
     }
   }
 
-  // Obtener usuario por ID (para el middleware)
   async getUserById(id) {
     try {
       const user = this.users.find(u => u.id === id);

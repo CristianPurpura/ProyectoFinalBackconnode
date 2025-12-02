@@ -5,7 +5,6 @@ class AuthMiddleware {
     this.authService = new AuthService();
   }
 
-  // Middleware para verificar autenticación
   authenticate = async (req, res, next) => {
     try {
       const token = req.headers.authorization;
@@ -28,7 +27,6 @@ class AuthMiddleware {
         });
       }
 
-      // Agregar información del usuario a la request
       req.user = result.data;
       req.userId = result.data.id;
       
@@ -42,7 +40,6 @@ class AuthMiddleware {
     }
   };
 
-  // Middleware para verificar roles (opcional para futuras implementaciones)
   authorize = (roles = []) => {
     return (req, res, next) => {
       try {
@@ -79,7 +76,6 @@ class AuthMiddleware {
     };
   };
 
-  // Middleware opcional: verificar si es admin
   requireAdmin = (req, res, next) => {
     try {
       if (!req.user) {

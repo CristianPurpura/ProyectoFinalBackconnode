@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Validar que las variables de entorno estén presentes
 if (!process.env.FIREBASE_PROJECT_ID) {
   throw new Error('FIREBASE_PROJECT_ID no está configurado en las variables de entorno');
 }
@@ -16,7 +15,6 @@ if (!process.env.FIREBASE_CLIENT_EMAIL) {
   throw new Error('FIREBASE_CLIENT_EMAIL no está configurado en las variables de entorno');
 }
 
-// Configuración de Firebase Admin SDK
 const serviceAccount = {
   type: "service_account",
   project_id: process.env.FIREBASE_PROJECT_ID,
@@ -30,7 +28,6 @@ const serviceAccount = {
   client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL
 };
 
-// Inicializar Firebase Admin
 if (admin.apps.length === 0) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -38,7 +35,6 @@ if (admin.apps.length === 0) {
   });
 }
 
-// Obtener referencia a Firestore
 const db = admin.firestore();
 
 console.log('✅ Firebase inicializado correctamente');

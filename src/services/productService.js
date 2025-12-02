@@ -5,7 +5,6 @@ class ProductService {
     this.productModel = new ProductModel();
   }
 
-  // Obtener todos los productos
   async getAllProducts() {
     try {
       const products = await this.productModel.getAllProducts();
@@ -23,7 +22,6 @@ class ProductService {
     }
   }
 
-  // Obtener producto por ID
   async getProductById(id) {
     try {
       if (!id) {
@@ -58,10 +56,8 @@ class ProductService {
     }
   }
 
-  // Crear nuevo producto
   async createProduct(productData) {
     try {
-      // Validaciones adicionales del negocio
       if (productData.price <= 0) {
         return {
           success: false,
@@ -94,7 +90,6 @@ class ProductService {
     }
   }
 
-  // Actualizar producto
   async updateProduct(id, updateData) {
     try {
       if (!id) {
@@ -105,7 +100,6 @@ class ProductService {
         };
       }
 
-      // Validaciones adicionales
       if (updateData.price !== undefined && updateData.price <= 0) {
         return {
           success: false,
@@ -146,7 +140,6 @@ class ProductService {
     }
   }
 
-  // Eliminar producto
   async deleteProduct(id) {
     try {
       if (!id) {
@@ -181,7 +174,6 @@ class ProductService {
     }
   }
 
-  // Obtener productos por categoría
   async getProductsByCategory(category) {
     try {
       if (!category) {

@@ -5,7 +5,6 @@ class ProductModel {
     this.collection = 'products';
   }
 
-  // Obtener todos los productos
   async getAllProducts() {
     try {
       const productsRef = db.collection(this.collection);
@@ -29,7 +28,6 @@ class ProductModel {
     }
   }
 
-  // Obtener producto por ID
   async getProductById(id) {
     try {
       const productRef = db.collection(this.collection).doc(id);
@@ -48,10 +46,8 @@ class ProductModel {
     }
   }
 
-  // Crear nuevo producto
   async createProduct(productData) {
     try {
-      // Validar datos requeridos
       const requiredFields = ['name', 'description', 'price', 'category'];
       for (const field of requiredFields) {
         if (!productData[field]) {
@@ -59,7 +55,6 @@ class ProductModel {
         }
       }
 
-      // Agregar timestamps
       const product = {
         ...productData,
         price: parseFloat(productData.price),
@@ -80,36 +75,29 @@ class ProductModel {
     }
   }
 
-  // Actualizar producto
   async updateProduct(id, updateData) {
     try {
       const productRef = db.collection(this.collection).doc(id);
-      
-      // Verificar que el producto existe
       const doc = await productRef.get();
       if (!doc.exists) {
         return null;
       }
 
-      // Preparar datos de actualización
       const updatedData = {
         ...updateData,
         updatedAt: new Date()
       };
 
-      // Si se actualiza el precio, convertir a número
       if (updatedData.price) {
         updatedData.price = parseFloat(updatedData.price);
       }
 
-      // Si se actualiza el stock, convertir a entero
       if (updatedData.stock !== undefined) {
         updatedData.stock = parseInt(updatedData.stock);
       }
 
       await productRef.update(updatedData);
 
-      // Retornar el producto actualizado
       const updatedDoc = await productRef.get();
       return {
         id: updatedDoc.id,
@@ -120,12 +108,9 @@ class ProductModel {
     }
   }
 
-  // Eliminar producto
   async deleteProduct(id) {
     try {
       const productRef = db.collection(this.collection).doc(id);
-      
-      // Verificar que el producto existe
       const doc = await productRef.get();
       if (!doc.exists) {
         return null;
@@ -138,7 +123,6 @@ class ProductModel {
     }
   }
 
-  // Buscar productos por categoría
   async getProductsByCategory(category) {
     try {
       const productsRef = db.collection(this.collection);

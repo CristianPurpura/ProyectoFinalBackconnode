@@ -5,7 +5,6 @@ class AuthController {
     this.authService = new AuthService();
   }
 
-  // Login de usuario
   async login(req, res, next) {
     try {
       const { username, password } = req.body;
@@ -38,7 +37,6 @@ class AuthController {
     }
   }
 
-  // Verificar token (endpoint para validar tokens del frontend)
   async verifyToken(req, res, next) {
     try {
       const token = req.headers.authorization;
@@ -71,10 +69,8 @@ class AuthController {
     }
   }
 
-  // Obtener perfil del usuario autenticado
   async getProfile(req, res, next) {
     try {
-      // El usuario viene del middleware de autenticación
       const user = req.user;
       
       res.status(200).json({
@@ -87,11 +83,8 @@ class AuthController {
     }
   }
 
-  // Logout (invalidar token en el cliente)
   async logout(req, res, next) {
     try {
-      // En esta implementación simple, el logout se maneja en el cliente
-      // eliminando el token del localStorage o sessionStorage
       res.status(200).json({
         success: true,
         data: null,

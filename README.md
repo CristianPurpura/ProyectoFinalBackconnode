@@ -2,26 +2,26 @@
 
 API REST para la gestión de productos con autenticación JWT y base de datos Firebase Firestore.
 
-## 🚀 Características
+## Características
 
-- ✅ CRUD completo para productos
-- ✅ Autenticación JWT
-- ✅ Integración con Firebase Firestore
-- ✅ Arquitectura en capas (MVC + Services)
-- ✅ Manejo de errores robusto
-- ✅ Middleware de seguridad
-- ✅ Validaciones de datos
-- ✅ CORS configurado
-- ✅ Logging de requests
+- CRUD completo para productos
+- Autenticación JWT
+- Integración con Firebase Firestore
+- Arquitectura en capas (MVC + Services)
+- Manejo de errores robusto
+- Middleware de seguridad
+- Validaciones de datos
+- CORS configurado
+- Logging de requests
 
-## 📋 Requisitos Previos
+## Requisitos Previos
 
-- Node.js 16+ 
-- npm o yarn
+- Node.js 18+
+- npm
 - Cuenta de Firebase con proyecto creado
 - Firestore habilitado
 
-## 🛠️ Instalación
+## Instalación
 
 1. **Clonar e instalar dependencias:**
 ```bash
@@ -62,7 +62,7 @@ npm install
 npm start
 ```
 
-## 📡 Endpoints de la API
+## Endpoints de la API
 
 ### Autenticación
 
@@ -147,7 +147,7 @@ Actualiza un producto existente (requiere autenticación).
 #### DELETE /api/products/:id
 Elimina un producto (requiere autenticación).
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 ```
 proyecto/
@@ -173,7 +173,7 @@ proyecto/
 └── .env                         # Variables de entorno
 ```
 
-## 🔒 Seguridad
+## Seguridad
 
 - **JWT**: Tokens de autenticación con expiración de 24 horas
 - **CORS**: Configurado para dominios específicos
@@ -181,7 +181,7 @@ proyecto/
 - **Validación de datos**: Validaciones en todas las capas
 - **Manejo de errores**: No exposición de información sensible
 
-## 🧪 Estructura de Respuesta
+## Estructura de Respuesta
 
 Todas las respuestas de la API siguen la siguiente estructura:
 
@@ -193,7 +193,7 @@ Todas las respuestas de la API siguen la siguiente estructura:
 }
 ```
 
-## ⚠️ Códigos de Error
+## Códigos de Error
 
 - **200**: OK
 - **201**: Creado
@@ -204,7 +204,7 @@ Todas las respuestas de la API siguen la siguiente estructura:
 - **500**: Error interno del servidor
 - **503**: Servicio no disponible
 
-## 🔧 Configuración de Firestore
+## Configuración de Firestore
 
 1. Crea una colección llamada `products`
 2. Agrega un documento de ejemplo con esta estructura:
@@ -222,12 +222,12 @@ Todas las respuestas de la API siguen la siguiente estructura:
 }
 ```
 
-## 📝 Scripts Disponibles
+## Scripts Disponibles
 
 - `npm start`: Inicia el servidor en producción
 - `npm run dev`: Inicia el servidor en modo desarrollo con auto-reload
 
-## 🚀 Despliegue
+## Despliegue
 
 Para desplegar en producción:
 
@@ -236,6 +236,6 @@ Para desplegar en producción:
 3. Usa `NODE_ENV=production`
 4. Configura un proxy reverso (Nginx) si es necesario
 
-## 📞 Soporte
+## Soporte
 
 Para reportar problemas o solicitar características, crea un issue en el repositorio del proyecto.

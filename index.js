@@ -2,12 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-
-// Importar rutas
 import productsRoutes from './src/routes/products.routes.js';
 import authRoutes from './src/routes/auth.routes.js';
-
-// Importar middlewares
 import { 
   errorHandler, 
   notFoundHandler, 
@@ -16,17 +12,12 @@ import {
   securityHeaders 
 } from './src/middlewares/errorMiddleware.js';
 
-// Configurar variables de entorno
 dotenv.config();
 
-// Crear instancia de Express
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware de seguridad
 app.use(securityHeaders);
-
-// Configurar CORS
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [
@@ -43,18 +34,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// Middleware para logging de requests
 app.use(requestLogger);
-
-// Middleware para parsear JSON
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
-
-// Middleware para validar Content-Type
 app.use(validateContentType);
-
-// Ruta de salud del servidor
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
@@ -71,7 +54,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Ruta de health check
 app.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
@@ -86,17 +68,10 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Configurar rutas
 app.use('/auth', authRoutes);
 app.use('/api/products', productsRoutes);
-
-// Middleware para rutas no encontradas (404)
 app.use(notFoundHandler);
-
-// Middleware global de manejo de errores
 app.use(errorHandler);
-
-// Manejar errores no capturados
 process.on('uncaughtException', (err) => {
   console.error('Error no capturado:', err);
   if (process.env.NODE_ENV !== 'production') {
@@ -112,7 +87,6 @@ process.on('unhandledRejection', (reason, promise) => {
   }
 });
 
-// Iniciar servidor (solo en desarrollo local)
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log('='.repeat(50));

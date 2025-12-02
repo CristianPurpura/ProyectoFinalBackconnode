@@ -119,6 +119,12 @@ firestore-debug.log
 *-firebase-adminsdk-*.json
 serviceAccountKey.json
 
+# Documentation and test files
+README.md
+requests.http
+*.md
+!package.json
+
 # OS generated files
 .DS_Store
 .DS_Store?

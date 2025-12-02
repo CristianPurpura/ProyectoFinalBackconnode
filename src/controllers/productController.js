@@ -5,7 +5,6 @@ class ProductController {
     this.productService = new ProductService();
   }
 
-  // Obtener todos los productos
   async getAllProducts(req, res, next) {
     try {
       const result = await this.productService.getAllProducts();
@@ -28,7 +27,6 @@ class ProductController {
     }
   }
 
-  // Obtener producto por ID
   async getProductById(req, res, next) {
     try {
       const { id } = req.params;
@@ -53,7 +51,6 @@ class ProductController {
     }
   }
 
-  // Crear nuevo producto
   async createProduct(req, res, next) {
     try {
       const productData = req.body;
@@ -77,7 +74,6 @@ class ProductController {
     }
   }
 
-  // Actualizar producto
   async updateProduct(req, res, next) {
     try {
       const { id } = req.params;
@@ -103,7 +99,6 @@ class ProductController {
     }
   }
 
-  // Eliminar producto
   async deleteProduct(req, res, next) {
     try {
       const { id } = req.params;
@@ -128,7 +123,6 @@ class ProductController {
     }
   }
 
-  // Obtener productos por categoría
   async getProductsByCategory(req, res, next) {
     try {
       const { category } = req.query;

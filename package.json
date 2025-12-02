@@ -10,6 +10,7 @@
     "vercel-build": "echo 'Vercel build completed'",
     "verify": "node verify-deployment.js",
     "verify-prod": "node verify-deployment.js https://tu-proyecto.vercel.app",
+    "generate-env": "node generate-vercel-env.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
