@@ -1,0 +1,122 @@
+GUÍA RÁPIDA - PRUEBAS EN POSTMAN
+
+==================================================
+URL BASE
+==================================================
+https://proyecto-final-backconnode.vercel.app
+
+==================================================
+CREDENCIALES
+==================================================
+Usuario: admin
+Password: ProyectoFinal2025@Secure!
+
+==================================================
+1. LOGIN - Obtener Token
+==================================================
+Método: POST
+URL: https://proyecto-final-backconnode.vercel.app/auth/login
+
+Headers:
+Content-Type: application/json
+
+Body:
+{
+  "username": "admin",
+  "password": "ProyectoFinal2025@Secure!"
+}
+
+Copiar el token de la respuesta: data.token
+
+==================================================
+2. OBTENER TODOS LOS PRODUCTOS
+==================================================
+Método: GET
+URL: https://proyecto-final-backconnode.vercel.app/api/products
+
+Sin headers adicionales (ruta pública)
+
+==================================================
+3. OBTENER PRODUCTO POR ID
+==================================================
+Método: GET
+URL: https://proyecto-final-backconnode.vercel.app/api/products/ID_DEL_PRODUCTO
+
+Reemplazar ID_DEL_PRODUCTO con un ID real de la respuesta anterior
+
+==================================================
+4. CREAR PRODUCTO (Requiere Token)
+==================================================
+Método: POST
+URL: https://proyecto-final-backconnode.vercel.app/api/products/create
+
+Headers:
+Content-Type: application/json
+Authorization: Bearer TU_TOKEN_AQUI
+
+Body:
+{
+  "name": "Laptop Dell XPS 15",
+  "description": "Laptop de alto rendimiento con pantalla 4K",
+  "price": 1299.99,
+  "category": "electrónicos",
+  "stock": 10
+}
+
+==================================================
+5. ACTUALIZAR PRODUCTO (Requiere Token)
+==================================================
+Método: PUT
+URL: https://proyecto-final-backconnode.vercel.app/api/products/ID_DEL_PRODUCTO
+
+Headers:
+Content-Type: application/json
+Authorization: Bearer TU_TOKEN_AQUI
+
+Body:
+{
+  "name": "Laptop Dell XPS 15 - Actualizada",
+  "price": 1199.99,
+  "stock": 15
+}
+
+==================================================
+6. ELIMINAR PRODUCTO (Requiere Token)
+==================================================
+Método: DELETE
+URL: https://proyecto-final-backconnode.vercel.app/api/products/ID_DEL_PRODUCTO
+
+Headers:
+Authorization: Bearer TU_TOKEN_AQUI
+
+==================================================
+PRUEBAS DE ERROR
+==================================================
+
+Error 404 - Ruta inexistente
+-----------------------------
+Método: GET
+URL: https://proyecto-final-backconnode.vercel.app/ruta-inexistente
+
+Error 401 - Sin token
+----------------------
+Método: POST
+URL: https://proyecto-final-backconnode.vercel.app/api/products/create
+Headers: Content-Type: application/json
+Body: { "name": "Test", "description": "Test", "price": 99, "category": "test", "stock": 1 }
+
+Error 401 - Token inválido
+---------------------------
+Método: POST
+URL: https://proyecto-final-backconnode.vercel.app/api/products/create
+Headers: 
+  Content-Type: application/json
+  Authorization: Bearer token_invalido
+Body: { "name": "Test", "description": "Test", "price": 99, "category": "test", "stock": 1 }
+
+==================================================
+NOTAS
+==================================================
+- Seleccionar "Body" → "raw" → "JSON" en Postman
+- Reemplazar TU_TOKEN_AQUI con el token del login
+- Reemplazar ID_DEL_PRODUCTO con IDs reales
