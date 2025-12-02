@@ -1,5 +1,7 @@
 const errorHandler = (err, req, res, next) => {
-  console.error('Error capturado por errorHandler:', err);code.startsWith('firestore/')) {
+  console.error('Error capturado por errorHandler:', err);
+
+  if (err.code && err.code.startsWith('firestore/')) {
     return res.status(503).json({
       success: false,
       data: null,
@@ -72,8 +74,9 @@ const requestLogger = (req, res, next) => {
 };
 
 const validateContentType = (req, res, next) => {
-  if (['POST', 'PUT', 'PATCH'].includes(req.method)) {
-    if (!req.is('application/json')) {
+  if (['POST', 'PUT', 'PATCH'].includes(req.method) && req.body && Object.keys(req.body).length > 0) {
+    const contentType = req.get('content-type');
+    if (contentType && !contentType.includes('application/json')) {
       return res.status(400).json({
         success: false,
         data: null,
